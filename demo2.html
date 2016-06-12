@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery实现简单的返回顶部的效果</title>
+	<style type="text/css">
+		body, div, img, a{padding:0;margin:0;}
+		img{border:none;display: block;}
+		#gotop-btn{width: 40px;height: 40px;position: fixed;left: 50%;margin-left: 610px;bottom: 30px;background: url(images/gotop-btn.png) left top no-repeat;display: none;}
+		#gotop-btn:hover{background-position: left -40px; }
+	</style>
+</head>
+<body>
+	<div class="content">
+		<img src="images/jd01.png" alt="">
+		<img src="images/jd02.png" alt="">
+		<img src="images/jd02.png" alt="">
+	</div>
+	<div id="go-top">
+		<a href="javascript:;"  id="gotop-btn"><!-- 如果为空，点击时会直接跳到顶部，设为javascript:;表示通过js代码来实现跳转 -->
+		</a>
+	</div>
+	<script src="http://cdn.staticfile.org/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$(window).scroll(function(){
+				// 当滚动条距顶部超过100像素时，返回顶部按钮出现，否则消失
+        if ($(window).scrollTop()>=100){
+            $("#gotop-btn").fadeIn(500);
+        }
+        else{
+            $("#gotop-btn").fadeOut(500);
+        }
+	    });
+	    //当点击跳转链接后，回到页面顶部位置
+	    $("#gotop-btn").click(function(){
+	        $('body,html').animate({scrollTop:0},300);
+	        
+	    });
+    });
+	</script>
+</body>
+</html>
